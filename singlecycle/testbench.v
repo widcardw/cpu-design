@@ -33,7 +33,7 @@ module tb_single_cycle_cpu;
         Clk <= 0;
         Run <= 0;
         #10 Run <= 1;
-        #2000 $finish;
+        #300 $finish;
     end
 
 endmodule

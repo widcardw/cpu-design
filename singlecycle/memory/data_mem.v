@@ -27,9 +27,7 @@ module data_mem(
     end
 
     initial begin
-        Mem[1] = 32'h123;
-        Mem[2] = 32'h456;
-        Mem[3] = 32'h789;
+        $readmemh("./memory/memory.list", Mem, 0, 31);
     end
 
 endmodule
