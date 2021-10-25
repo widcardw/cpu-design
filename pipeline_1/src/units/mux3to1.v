@@ -1,8 +1,13 @@
-module mux3to1(U, V, W, Sel, F);
-    parameter k = 8;
-    input [k-1:0] U, V, W;
-    input [1:0] Sel;
-    output reg [k-1:0] F;
+module mux3to1 #(
+        parameter k = 8
+    )(
+        input       [k-1:0] U,
+        input       [k-1:0] V,
+        input       [k-1:0] W,
+        input       [1:0]   Sel,
+        output  reg [k-1:0] F
+    );
+
     always@(U or V or W or Sel) begin
         case (Sel)
             2'b00:

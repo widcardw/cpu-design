@@ -62,7 +62,7 @@ module _32_32bit_reg(
     end
 
     initial begin
-        $readmemh("./_32_32bit_reg/memory.list", Mem, 0, 31);
+        $readmemh("./DataPath/reg.list", Mem, 0, 31);
     end
 
 endmodule

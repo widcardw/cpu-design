@@ -8,13 +8,13 @@ module testbench();
     reg                 MemWr;
 
     data_mem mem1(
-        .Run    (Run),
-        .Clk    (Clk),
-        .MemWr  (MemWr),
-        .Addr   (Addr),
-        .data_input     (DataIn),
-        .data_output    (DataOut)
-    );
+                 .Run    (Run),
+                 .Clk    (Clk),
+                 .MemWr  (MemWr),
+                 .Addr   (Addr),
+                 .data_input     (DataIn),
+                 .data_output    (DataOut)
+             );
 
     initial begin
         Clk <= 1'b1;
@@ -32,7 +32,7 @@ module testbench();
         #80     MemWr <= 1'b0;
 
         #110    Addr <= 5'h1;
-        
+
         #140    Addr <= 5'h2;
 
         #5000 $finish;

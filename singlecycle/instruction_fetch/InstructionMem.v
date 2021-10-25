@@ -6,8 +6,8 @@ module InstructionMem(addr, Instruction);
     assign Instruction = {Mem[3 + addr], Mem[2 + addr], Mem[1 + addr], Mem[addr]};
     initial begin
         {Mem[3],  Mem[2],  Mem[1],  Mem[0] } = {6'b100011, 5'h00, 5'h08, 16'h0};
-        {Mem[7],  Mem[6],  Mem[5],  Mem[4] } = {6'h00, 5'h8, 5'h8, 5'h9, 5'h0, 6'h20};  
-        {Mem[11], Mem[10], Mem[9],  Mem[8] } = {6'b100011, 5'h8, 5'ha, 16'b0};  
+        {Mem[7],  Mem[6],  Mem[5],  Mem[4] } = {6'h00, 5'h8, 5'h8, 5'h9, 5'h0, 6'h20};
+        {Mem[11], Mem[10], Mem[9],  Mem[8] } = {6'b100011, 5'h8, 5'ha, 16'b0};
         {Mem[15], Mem[14], Mem[13], Mem[12]} = {6'b100011, 5'h9, 5'hb, 16'b0};
         {Mem[19], Mem[18], Mem[17], Mem[16]} = {6'b000000, 5'hb, 5'ha, 5'hb, 5'b0, 6'b100000};
         {Mem[23], Mem[22], Mem[21], Mem[20]} = {6'b101011, 5'h8, 5'hb, 16'h0};

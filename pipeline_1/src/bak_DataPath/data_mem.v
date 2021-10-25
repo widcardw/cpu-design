@@ -27,7 +27,7 @@ module data_mem(
     end
 
     initial begin
-        $readmemh("./memory/memory.list", Mem, 0, 31);
+        $readmemh("./DataPath/mem.list", Mem, 0, 31);
     end
 
 endmodule

@@ -1,23 +1,12 @@
-// `include "./alu/mux3to1.v"
-// `include "./alu/mux2to1.v"
-// `include "./alu/adderk.v"
-// `include "./alu/alu_dispatcher.v"
-
 module alu(
-        input_a,
-        input_b,
-        input_aluctr,
-        out_result,
-        out_zero,
-        out_overflow
+        input   [n - 1: 0]  input_a,
+        input   [n - 1: 0]  input_b,
+        input   [    2: 0]  input_aluctr,
+        output  [n - 1: 0]  out_result,
+        output              out_zero,
+        output              out_overflow
     );
     parameter n = 32;
-
-    input   [n - 1: 0]  input_a, input_b;
-    input   [    2: 0]  input_aluctr;
-
-    output  [n - 1: 0]  out_result;
-    output              out_zero, out_overflow;
 
     wire                Add_carry;
     wire                Add_overflow;
@@ -54,20 +43,20 @@ module alu(
                 .k   (n)
             )
             multiplexer2(
-                .V   (32'h0),
-                .W   (32'h1),
+                .A   (32'h0),
+                .B   (32'h1),
                 .Selm(Less),
-                .F   (G)
+                .R   (G)
             );
 
     mux2to1 #(
                 .k   (1)
             )
             multiplexer3(
-                .V   (I),
-                .W   (J),
+                .A   (I),
+                .B   (J),
                 .Selm(SIGctr),
-                .F   (Less)
+                .R   (Less)
             );
 
     adderk #(

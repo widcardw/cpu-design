@@ -1,15 +1,15 @@
 module controller(
-        input [31:0] Instruction,
-        output RegWr, //
-        output ALUSrc,
-        output RegDst, //
-        output MemtoReg, //
-        output MemWr, //
-        output Branch, //
-        output Jump, //
-        output ExtOp, //
-        output [2:0] ALUctr, //
-        output R_type //
+        input   [31:0]  Instruction,
+        output          RegWr,
+        output          ALUSrc,
+        output          RegDst,
+        output          MemtoReg,
+        output          MemWr,
+        output          Branch,
+        output          Jump,
+        output          ExtOp,
+        output  [2:0]   ALUctr,
+        output          R_type
     );
     wire ori, addiu, lw, sw, beq, jump;
     wire [2:0] ALUop, ALUfunc;
@@ -45,7 +45,7 @@ endmodule
 module OpDecoder(op, R_type, ori, addiu, lw, sw, beq, jump);
     input [5:0] op;
     output R_type, ori, addiu, lw, sw, beq, jump;
-    assign R_type   = op == 6'b0;
+    assign R_type   = op == 6'b000000;
     assign ori      = op == 6'b001101;
     assign addiu    = op == 6'b001001;
     assign lw       = op == 6'b100011;

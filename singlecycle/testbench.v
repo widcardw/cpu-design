@@ -11,15 +11,15 @@ module tb_single_cycle_cpu;
     wire    [31:0]  Result;
 
     single_cycle_cpu scc
-    (
-        .Run(Run),
-        .Clk(Clk),
-        .Instruction(Instruction),
-        .busA(busA),
-        .busB(busB),
-        .busW(busW),
-        .Result(Result)
-    );
+                     (
+                         .Run(Run),
+                         .Clk(Clk),
+                         .Instruction(Instruction),
+                         .busA(busA),
+                         .busB(busB),
+                         .busW(busW),
+                         .Result(Result)
+                     );
 
     localparam CLK_PERIOD = 10;
     always #(CLK_PERIOD/2) Clk=~Clk;
