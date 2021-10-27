@@ -1,0 +1,90 @@
+[*]
+[*] GTKWave Analyzer v3.3.108 (w)1999-2020 BSI
+[*] Tue Oct 26 14:37:46 2021
+[*]
+[dumpfile] "C:\Users\row31976300\Documents\ForLearning\ComputerOrganization\cpu-design\pipeline_2\tb_pipeline1.vcd"
+[dumpfile_mtime] "Tue Oct 26 14:32:55 2021"
+[dumpfile_size] 240510
+[savefile] "C:\Users\row31976300\Documents\ForLearning\ComputerOrganization\cpu-design\pipeline_2\simulation.gtkw"
+[timestart] 0
+[size] 1920 1003
+[pos] -1 -1
+*-8.000000 18 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb_pipeline1.
+[treeopen] tb_pipeline1.u_pipeline1.
+[treeopen] tb_pipeline1.u_pipeline1.u_datapath.
+[sst_width] 271
+[signals_width] 271
+[sst_expanded] 1
+[sst_vpaned_height] 346
+@28
+tb_pipeline1.Clk
+tb_pipeline1.Run
+@22
+tb_pipeline1.u_pipeline1.u_datapath.u_iunit.pc[31:0]
+tb_pipeline1.u_pipeline1.Instruction[31:0]
+@28
+tb_pipeline1.u_pipeline1.u_datapath.load_use_stall
+@200
+-if/id
+@28
+tb_pipeline1.u_pipeline1.u_datapath.IF_flush
+@29
+tb_pipeline1.u_pipeline1.u_datapath.MemtoReg
+@22
+tb_pipeline1.u_pipeline1.u_datapath.if_id_instruction_out[31:0]
+tb_pipeline1.u_pipeline1.u_datapath.if_id_pc_inc_out[31:0]
+tb_pipeline1.u_pipeline1.u_datapath.si_Rs[4:0]
+tb_pipeline1.u_pipeline1.u_datapath.si_Rt[4:0]
+tb_pipeline1.u_pipeline1.u_datapath.si_Rd[4:0]
+@28
+tb_pipeline1.u_pipeline1.u_datapath.bz_ahead
+@200
+-rfile
+@22
+tb_pipeline1.u_pipeline1.u_datapath.u_rfile.Rs[4:0]
+tb_pipeline1.u_pipeline1.u_datapath.u_rfile.Rt[4:0]
+tb_pipeline1.u_pipeline1.u_datapath.u_rfile.Rw[4:0]
+tb_pipeline1.u_pipeline1.u_datapath.u_rfile.busA[31:0]
+tb_pipeline1.u_pipeline1.u_datapath.u_rfile.busB[31:0]
+tb_pipeline1.u_pipeline1.u_datapath.u_rfile.busW[31:0]
+@200
+-id/ex
+@22
+tb_pipeline1.u_pipeline1.u_datapath.r_id_ex.Rs[4:0]
+tb_pipeline1.u_pipeline1.u_datapath.r_id_ex.Rt[4:0]
+tb_pipeline1.u_pipeline1.u_datapath.r_id_ex.Rd[4:0]
+tb_pipeline1.u_pipeline1.u_datapath.r_id_ex.busA_out[31:0]
+tb_pipeline1.u_pipeline1.u_datapath.r_id_ex.busB_out[31:0]
+@28
+tb_pipeline1.u_pipeline1.u_datapath.r_id_ex.ALUctr[2:0]
+tb_pipeline1.u_pipeline1.u_datapath.r_id_ex.ALUSrc
+tb_pipeline1.u_pipeline1.u_datapath.r_id_ex.ALUSrc_out
+tb_pipeline1.u_pipeline1.u_datapath.r_id_ex.ExtOp
+tb_pipeline1.u_pipeline1.u_datapath.r_id_ex.ExtOp_out
+tb_pipeline1.u_pipeline1.u_datapath.r_id_ex.RegDst
+tb_pipeline1.u_pipeline1.u_datapath.r_id_ex.RegWr
+@200
+-u_exec
+@28
+tb_pipeline1.u_pipeline1.u_datapath.u_exec.ALUSrc
+@22
+tb_pipeline1.u_pipeline1.u_datapath.u_exec.busA[31:0]
+tb_pipeline1.u_pipeline1.u_datapath.u_exec.ALUinB[31:0]
+tb_pipeline1.u_pipeline1.u_datapath.u_exec.ALUout[31:0]
+@200
+-forward_a
+@22
+tb_pipeline1.u_pipeline1.u_datapath.m_forward_a.U[31:0]
+tb_pipeline1.u_pipeline1.u_datapath.m_forward_a.V[31:0]
+tb_pipeline1.u_pipeline1.u_datapath.m_forward_a.W[31:0]
+tb_pipeline1.u_pipeline1.u_datapath.m_forward_a.F[31:0]
+@200
+-forward_b
+@22
+tb_pipeline1.u_pipeline1.u_datapath.m_forward_b.U[31:0]
+tb_pipeline1.u_pipeline1.u_datapath.m_forward_b.V[31:0]
+tb_pipeline1.u_pipeline1.u_datapath.m_forward_b.W[31:0]
+tb_pipeline1.u_pipeline1.u_datapath.m_forward_b.F[31:0]
+[pattern_trace] 1
+[pattern_trace] 0
