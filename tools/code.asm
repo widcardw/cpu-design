@@ -9,7 +9,7 @@ sub s3, s1, s2  // s3=1h-fh=fffffff2H
 addiu s4, s5, b  // s4=aH
 sltu t1, s7, s3 // (u)s5<(u)s3, t1=1
 ori s5, s0, 0F00    // s5=1 | f00H=0000 0f01H
-beq s4, zero, 1   // if (s7==0) goto sw else s7--
+beq s4, zero, 2   // if (s7==0) goto sw else s7--
 sub s4, s4, s1  
 sub s4, s4, s1  
 j b                // goto line 12
