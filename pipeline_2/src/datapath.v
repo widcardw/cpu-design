@@ -43,6 +43,55 @@ module datapath (
     wire [31:0] pc_inc_out;     // output by iunit
     wire [31:0] iunit_instruction;
 
+
+    wire    [4:0]   si_Rs;
+    wire    [4:0]   si_Rt;
+    wire    [4:0]   si_Rd;
+    wire    [15:0]  si_im;
+
+    wire            id_ex_ExtOp_out;
+    wire            id_ex_ALUSrc_out;
+    wire    [2:0]   id_ex_ALUOp_out;
+    wire            id_ex_RegDst_out;
+    wire            id_ex_MemWr_out;
+    wire            id_ex_Branch_out;
+    wire            id_ex_MemtoReg_out;
+    wire            id_ex_RegWr_out;
+    wire    [4:0]   id_ex_Rs_out;
+    wire    [4:0]   id_ex_Rt_out;
+    wire    [4:0]   id_ex_Rd_out;
+    wire    [31:0]  id_ex_busA_out;
+    wire    [31:0]  id_ex_busB_out;
+    wire    [15:0]  id_ex_imm_out;
+    wire    [31:0]  id_ex_pc_inc_out;
+    wire            id_ex_jump;
+    wire    [31:0]  id_ex_jump_target;
+
+    wire            ex_me_MemWr_out;
+    wire            ex_me_Branch_out;
+    wire            ex_me_MemtoReg_out;
+    wire            ex_me_RegWr_out;
+    wire    [31:0]  ex_me_Target_out;
+    wire            ex_me_Zero_out;
+    wire    [31:0]  ex_me_ALUout_out;
+    wire    [31:0]  ex_me_busB_out;
+    wire    [4:0]   ex_me_Rw_out;
+    wire            ex_me_jump;
+    wire    [31:0]  ex_me_jump_target;
+    wire            ex_me_bz;
+
+    wire    [1:0]   forward_a;
+    wire    [1:0]   forward_b;
+    wire    [31:0]  forward_a_target;
+    wire    [31:0]  forward_b_target;
+
+    wire    [31:0]  me_wr_databack;
+    wire    [31:0]  me_wr_Dataout_out;
+    wire    [4:0]   me_wr_Rw_out;
+    wire    [31:0]  me_wr_ALUout_out;
+    wire            me_wr_MemtoReg_out;
+    wire            me_wr_RegWr_out;
+
     // caution
     // pc, if_if_reg should be stalled when hazard detection is enabled
     // and the flag signals should be bubbled
@@ -96,7 +145,7 @@ module datapath (
     wire            if_id_bubble;
     wire            if_id_stall;
 
-    assign          if_id_bubble = 0;
+    // assign          if_id_bubble = 0;
     assign          if_id_stall = load_use_stall;
 
     wire    [31:0]  if_id_pc_inc_out;       // output by if_id_reg
@@ -177,7 +226,7 @@ module datapath (
     mux3to1 # (
                 .k      (32)
             ) mux_real_pc (
-                .U      (if_id_pc_inc_out),
+                .U      (pc_inc_out),
                 .V      (bz_target_ahead),
                 .W      (jump_target_pc),
                 .Sel    ({Jump, bz_ahead}),
@@ -194,11 +243,6 @@ module datapath (
     assign if_id_bubble = IF_flush;
 
     // Instruction split, before signals are passed into rfile
-
-    wire    [4:0]   si_Rs;
-    wire    [4:0]   si_Rt;
-    wire    [4:0]   si_Rd;
-    wire    [15:0]  si_im;
 
     split_instruction u_si(
                           .Instruction  (if_id_instruction_out),
@@ -241,23 +285,6 @@ module datapath (
     assign          id_ex_stall = 0;
     assign          id_ex_bubble = 0;
 
-    wire            id_ex_ExtOp_out;
-    wire            id_ex_ALUSrc_out;
-    wire    [2:0]   id_ex_ALUOp_out;
-    wire            id_ex_RegDst_out;
-    wire            id_ex_MemWr_out;
-    wire            id_ex_Branch_out;
-    wire            id_ex_MemtoReg_out;
-    wire            id_ex_RegWr_out;
-    wire    [4:0]   id_ex_Rs_out;
-    wire    [4:0]   id_ex_Rt_out;
-    wire    [4:0]   id_ex_Rd_out;
-    wire    [31:0]  id_ex_busA_out;
-    wire    [31:0]  id_ex_busB_out;
-    wire    [15:0]  id_ex_imm_out;
-    wire    [31:0]  id_ex_pc_inc_out;
-    wire            id_ex_jump;
-    wire    [31:0]  id_ex_jump_target;
 
     id_reg # (
                .RNONE               (0)
@@ -365,17 +392,6 @@ module datapath (
     assign          ex_me_stall = 0;
     assign          ex_me_bubble = 0;
 
-    wire            ex_me_MemWr_out;
-    wire            ex_me_Branch_out;
-    wire            ex_me_MemtoReg_out;
-    wire            ex_me_RegWr_out;
-    wire    [31:0]  ex_me_Target_out;
-    wire            ex_me_Zero_out;
-    wire    [31:0]  ex_me_ALUout_out;
-    wire    [31:0]  ex_me_busB_out;
-    wire    [4:0]   ex_me_Rw_out;
-    wire            ex_me_jump;
-    wire    [31:0]  ex_me_jump_target;
 
     exec_reg # (
                  .RNONE               (0)
@@ -410,16 +426,12 @@ module datapath (
 
     // Branch & Zero signal
 
-    wire            ex_me_bz;
 
     assign ex_me_bz = ex_me_Branch_out & ex_me_Zero_out;
 
     // forward unit
 
-    wire    [1:0]   forward_a;
-    wire    [1:0]   forward_b;
-    wire    [31:0]  forward_a_target;
-    wire    [31:0]  forward_b_target;
+
 
     forwarding_unit u_foraward(
                         .id_ex_Rs(id_ex_Rs_out),
@@ -454,11 +466,6 @@ module datapath (
     assign          me_wr_stall = 0;
     assign          me_wr_bubble = 0;
 
-    wire    [31:0]  me_wr_Dataout_out;
-    wire    [4:0]   me_wr_Rw_out;
-    wire    [31:0]  me_wr_ALUout_out;
-    wire            me_wr_MemtoReg_out;
-    wire            me_wr_RegWr_out;
 
     mem_wr_reg # (
                    .RNONE               (0)
@@ -481,7 +488,7 @@ module datapath (
 
     // Mem to Reg write back
 
-    wire    [31:0]  me_wr_databack;
+
 
     mux2to1 #(
                 .k      (32)

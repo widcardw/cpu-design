@@ -9,6 +9,17 @@ module pipeline1 (
 
     wire    [31:0]  Instruction;
 
+    wire            ctrl_RegWr;
+    wire            ctrl_ExtOp;
+    wire            ctrl_RegDst;
+    wire    [2:0]   ctrl_ALUOp;
+    wire            ctrl_ALUSrc;
+    wire            ctrl_Branch;
+    wire            ctrl_MemWr;
+    wire            ctrl_MemtoReg;
+    wire            ctrl_R_type;
+    wire            ctrl_Jump;
+
     datapath u_datapath(
                  // input
                  .clk           (clk),
@@ -29,16 +40,7 @@ module pipeline1 (
 
     // controller unit
 
-    wire            ctrl_RegWr;
-    wire            ctrl_ExtOp;
-    wire            ctrl_RegDst;
-    wire    [2:0]   ctrl_ALUOp;
-    wire            ctrl_ALUSrc;
-    wire            ctrl_Branch;
-    wire            ctrl_MemWr;
-    wire            ctrl_MemtoReg;
-    wire            ctrl_R_type;
-    wire            ctrl_Jump;
+
 
     controller u_controller(
                    // input
